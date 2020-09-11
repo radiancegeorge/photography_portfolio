@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../mystyle.css';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Link
 } from 'react-router-dom';
 const Header = ()=>{
@@ -10,7 +10,6 @@ const Header = ()=>{
     
     return(
         <header>
-            <Router>
                 <nav>
                     <div className='hambugger' onClick={() => {
                         if (slideIn === 'slide-in') {
@@ -30,8 +29,10 @@ const Header = ()=>{
                 </div>
                     <div className={`sub ${slideIn}`}>
                         {links.map(link => (
-                            <div>
-                                <Link to={'/' + link}
+                            <div key={links.indexOf(link)}>
+                                <Link to={
+                                    links.indexOf(link) === 0 ? '/' : link
+                                }
                                 onClick = {()=>{
                                     determinant('slide-out')
                                 }}
@@ -40,7 +41,6 @@ const Header = ()=>{
                         ))}
                     </div>
                 </nav>
-            </Router>
         </header>
     )
 };
